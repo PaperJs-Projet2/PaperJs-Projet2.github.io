@@ -32,7 +32,6 @@ h1{
 	font-size:40px;
 	font-family: 'Rock Salt', cursive;
 	margin:0;
-	
 }
 
 
@@ -50,3 +49,64 @@ canvas{
 	height:65%;
 	border:5px solid darkblue;
 }
+
+
+.newGame{
+	position:absolute;
+	top:50%;
+	left:43%;
+	
+	
+}
+.newGame a{
+	text-decoration:none;
+	color:orange;
+	text-shadow: 1px 1px white;
+	font-size:30px;
+	font-family: 'Rock Salt', cursive;
+	margin:0;
+	
+}
+
+.newGame a:hover {
+	text-decoration:underline;
+}
+
+
+.gameOver{
+	position:absolute;
+	top:45%;
+	left:43%;
+	display:none;
+	visibility:hidden;
+	
+}
+.gameOver h2{
+	text-decoration:none;
+	color:orange;
+	text-shadow: 1px 1px white;
+	font-size:30px;
+	font-family: 'Rock Salt', cursive;
+	margin:0;
+	
+}
+
+.gameOver a{
+	text-decoration:none;
+	color:orange;
+	text-shadow: 1px 1px white;
+	font-size:20px;
+	font-family: 'Rock Salt', cursive;
+	margin:0;
+	
+}
+
+.gameOver a:hover {
+	text-decoration:underline;
+}
+
+.gameOver p{
+	font-size:20px;
+}
+
+
