@@ -4,6 +4,19 @@ html, body{
 	margin:0;	
 }
 
+body{
+	color:white;
+	
+	background-color:#269;
+	background-image: linear-gradient(darkblue 2px, transparent 2px),
+	linear-gradient(90deg, darkblue 2px, transparent 2px),
+	linear-gradient(rgba(255,255,255,.3) 1px, transparent 1px),
+	linear-gradient(90deg, rgba(255,255,255,.3) 1px, transparent 1px);
+	background-size:100px 100px, 100px 100px, 20px 20px, 20px 20px;
+	background-position:-2px -2px, -2px -2px, -1px -1px, -1px -1px
+	
+}
+
 header{
 	text-align:center;
 	margin-left:auto;
@@ -20,7 +33,7 @@ header{
 }
 
 canvas{
-	background-color:blue;
+	background-color:#269;
 	width:65%;
 	height:65%;
 	border:5px solid darkblue;
