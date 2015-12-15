@@ -67,6 +67,10 @@ window.onload = function() {
       triangle.onFrame = function(event) {
 
         this.position.x += 6;
+			if(this.position.x > $("canvas").width()){
+				this.position.x = 0;
+			triangle.position.y = Math.random() * $("canvas").height();
+			}
 
 
       }
