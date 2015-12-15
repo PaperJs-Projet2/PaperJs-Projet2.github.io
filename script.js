@@ -88,7 +88,7 @@ window.onload = function() {
 
 
       /* Fonction  */
-
+      /*Blabla/*
 
 
 			/* Le pac man suit la souris quand elle bouge */
