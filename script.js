@@ -8,12 +8,13 @@ window.onload = function() {
     $(".new").on("click", function() {
       /*   Cacher le bouton nouvelle partie   */
       $(".newGame").hide();
-			$.getScript("paper.js", function(){});
 
 
       /*   Appel au canvas  */
       var canvas = document.getElementById('myCanvas');
       paper.setup(canvas);
+
+
 
 
       /*   Faire les fonction du jeux ici avec paper.  */
@@ -24,12 +25,20 @@ window.onload = function() {
 			var tool2 = new Tool();
 
 
+
+
+
       /* PacMan */
       var pac = new Path.Circle({
         center: view.center,
         radius: 30,
         strokeColor: 'red'
       });
+
+
+
+
+
 
 
 
@@ -51,8 +60,6 @@ window.onload = function() {
 
 
 
-
-
       /*enemis*/
 
 
@@ -63,6 +70,10 @@ window.onload = function() {
 
 
       /* Fonction  */
+
+
+
+			/* Le pac man suit la souris quand elle bouge */
 			console.log(pac.position.y);
 
       tool.onMouseMove = function(event) {
@@ -77,8 +88,11 @@ window.onload = function() {
 
 				pac.position.x = newX;
 			 	pac.position.y = newY;
-
       }
+
+			/* le carré disparait après 10 second */
+
+
 
 
 
