@@ -16,7 +16,7 @@ window.onload = function() {
 			paper.setup(canvas);
 
 
-			/*   Faire les fonction du jeux ici avec paper.  */
+      /*   Faire les fonction du jeux ici avec paper.  */
 
 			/*Les objets*/
 
@@ -24,13 +24,12 @@ window.onload = function() {
 			var tool2 = new Tool();
 
 
-			/* PacMan */
-			var pac = new Path.Circle({
-				center: view.center,
-				radius: 30,
-				strokeColor: 'red'
-			});
-
+      /* PacMan */
+      var pac = new Path.Circle({
+        center: view.center,
+        radius: 30,
+        strokeColor: 'red'
+      });
 			//photo //
 			var pac = new Raster('test');
 			var loaded = false;
@@ -38,8 +37,7 @@ window.onload = function() {
 			pac.on('load', function() {
 				loaded = true;
 
-			});
-
+			})
 
 			/*Pommes*/
 
@@ -73,15 +71,20 @@ window.onload = function() {
 
 			triangle.onFrame = function(event) {
 
-				this.position.x += 6;
+        this.position.x += 6;
+			if(this.position.x > $("canvas").width()){
+				this.position.x = 0;
+			triangle.position.y = Math.random() * $("canvas").height();
+			}
 
 
 			}
 
 
+      /* Fonction  */
 
 
-
+			/* Le pac man suit la souris quand elle bouge */
 
 			tool.onMouseMove = function(event) {
 
@@ -97,7 +100,22 @@ window.onload = function() {
         pac.position.y = newY;
 
 
-    }
+      }
+
+			/* le carré disparait après 10 second */
+
+
+			carre.onFrame = function(event) {
+
+				if(event.count % 200 === 0 ){
+
+					var pointx = Math.random() * $("canvas").width();
+		      var pointy = Math.random() * $("canvas").height();
+					carre.position.x = Math.round(pointx);
+					carre.position.y = Math.round(pointy);
+					console.log(carre.point.x);
+				}
+			}
 
 
 
