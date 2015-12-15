@@ -25,13 +25,6 @@ window.onload = function() {
 
 
       /* PacMan */
-      var path = new Path.Circle({
-        center: view.center,
-        radius: 30,
-        strokeColor: 'red'
-      });
-
-      /* PacMan */
       var pac = new Path.Circle({
         center: view.center,
         radius: 30,
@@ -90,9 +83,12 @@ window.onload = function() {
 				var pointRecX = pac.position.x;
 				var pointRecY = pac.position.y;
 
+				var newX = pointRecX+((destination.x-pointRecX)/100);
+				var newY = pointRecY+((destination.y-pointRecY)/100);
 
-				pac.position.x = destination.x;
-				pac.position.y = destination.y;
+				pac.position.x = newX;
+			 	pac.position.y = newY;
+
 
       }
 
