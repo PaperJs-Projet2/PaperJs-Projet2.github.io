@@ -25,12 +25,8 @@ window.onload = function() {
 
 
       /* PacMan */
-      var pac = new Path.Circle({
-        center: view.center,
-        radius: 30,
-        strokeColor: 'red'
-      });
-			//photo //
+
+			//Image //
 			var pac = new Raster('pacman');
 			var loaded = false;
 
@@ -55,21 +51,28 @@ window.onload = function() {
 
 
 			/*enemis*/
+			//>
+			var enemiPac = new Raster('enemiPac');
+			var loaded = false;
+
+			enemiPac.on('load', function() {
+				loaded = true;
+			})
+			//>
 			var pointx = Math.random() * $("canvas").width();
 			var pointy = Math.random() * $("canvas").height();
-
-
-			var triangle = new Path.RegularPolygon(new Point(10, pointy), 3, 15)
+			/*var triangle = new Path.RegularPolygon(new Point(10, pointy), 3, 15)
 			triangle.fillColor = 'red';
 			triangle.rotate(90);
+			*/
 
 
-			triangle.onFrame = function(event) {
+			enemiPac.onFrame = function(event) {
 
-        this.position.x += 6;
+        	this.position.x += 6;
 			if(this.position.x > $("canvas").width()){
 				this.position.x = 0;
-			triangle.position.y = Math.random() * $("canvas").height();
+			enemiPac.position.y = Math.random() * $("canvas").height();
 			}
 
 
@@ -88,8 +91,8 @@ window.onload = function() {
         var pointRecX = pac.position.x;
         var pointRecY = pac.position.y;
 
-        var newX = pointRecX+((destination.x-pointRecX)/100);
-        var newY = pointRecY+((destination.y-pointRecY)/100);
+        var newX = pointRecX+((destination.x-pointRecX)/45);
+        var newY = pointRecY+((destination.y-pointRecY)/45);
 
         pac.position.x = newX;
         pac.position.y = newY;
