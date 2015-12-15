@@ -31,7 +31,7 @@ window.onload = function() {
         strokeColor: 'red'
       });
 			//photo //
-			var pac = new Raster('test');
+			var pac = new Raster('pacman');
 			var loaded = false;
 
 			pac.on('load', function() {
@@ -51,11 +51,6 @@ window.onload = function() {
 				strokeColor: 'black',
         fillColor: 'black' // Si option de bonus, faire des couleurs aléatoire
     });
-
-
-
-
-
 
 
 
