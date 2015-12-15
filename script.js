@@ -72,8 +72,11 @@ window.onload = function() {
 				var pointRecX = pac.position.x;
 				var pointRecY = pac.position.y;
 
-				pac.position.x = destination.x;
-				pac.position.y = destination.y;
+				var newX = pointRecX+((destination.x-pointRecX)/100);
+				var newY = pointRecY+((destination.y-pointRecY)/100);
+
+				pac.position.x = newX;
+			 	pac.position.y = newY;
 
       }
 
