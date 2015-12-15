@@ -1,0 +1,112 @@
+@import url(https://fonts.googleapis.com/css?family=Rock+Salt);
+
+html, body{
+	width:100%;
+	height:100%;
+	margin:0;	
+}
+
+body{
+	color:white;
+	
+	background-color:#269;
+	background-image: linear-gradient(darkblue 2px, transparent 2px),
+	linear-gradient(90deg, darkblue 2px, transparent 2px),
+	linear-gradient(rgba(255,255,255,.3) 1px, transparent 1px),
+	linear-gradient(90deg, rgba(255,255,255,.3) 1px, transparent 1px);
+	background-size:100px 100px, 100px 100px, 20px 20px, 20px 20px;
+	background-position:-2px -2px, -2px -2px, -1px -1px, -1px -1px
+	
+}
+
+header{
+	text-align:center;
+	margin-left:auto;
+	margin-right: auto;
+	
+}
+
+h1{
+	color:orange;
+	text-shadow: 1px 1px white;
+	font-size:40px;
+	font-family: 'Rock Salt', cursive;
+	margin:0;
+}
+
+
+.jeu{
+	text-align:center;
+	margin-left:auto;
+	margin-right: auto;
+	
+	
+}
+
+canvas{
+	background-color:#269;
+	width:65%;
+	height:65%;
+	border:5px solid darkblue;
+}
+
+
+.newGame{
+	position:absolute;
+	top:50%;
+	left:43%;
+	
+	
+}
+.newGame a{
+	text-decoration:none;
+	color:orange;
+	text-shadow: 1px 1px white;
+	font-size:30px;
+	font-family: 'Rock Salt', cursive;
+	margin:0;
+	
+}
+
+.newGame a:hover {
+	text-decoration:underline;
+}
+
+
+.gameOver{
+	position:absolute;
+	top:45%;
+	left:43%;
+	display:none;
+	visibility:hidden;
+	
+}
+.gameOver h2{
+	text-decoration:none;
+	color:orange;
+	text-shadow: 1px 1px white;
+	font-size:30px;
+	font-family: 'Rock Salt', cursive;
+	margin:0;
+	
+}
+
+.gameOver a{
+	text-decoration:none;
+	color:orange;
+	text-shadow: 1px 1px white;
+	font-size:20px;
+	font-family: 'Rock Salt', cursive;
+	margin:0;
+	
+}
+
+.gameOver a:hover {
+	text-decoration:underline;
+}
+
+.gameOver p{
+	font-size:20px;
+}
+
+

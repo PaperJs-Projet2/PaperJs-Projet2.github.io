@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+<head>
+  <title>PaperMan</title>
+
+  <!--  Style CSS   -->
+  <link rel="stylesheet" type="text/css" href="style.css" />
+  <link href='https://fonts.googleapis.com/css?family=Rock+Salt' rel='stylesheet' type='text/css'>
+
+  <!--   Script Javascript et PaperJs  -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.9.25/paper-full.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!--  <script type="text/paperscript" src="paper.js" canvas="myCanvas"></script>-->
+  <script type="text/javascript" src="script.js" ></script>
+
+  <!--   Meta   -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+
+
+</head>
+<body>
+
+	<header>
+		<h1>PaperMan</h1>
+		<p>Bouger la souris pour diriger Pacman vers les ronds et gagner des point. Attention a bien eviter les triangles.</p>
+	</header>
+
+
+
+	<div class="jeu">
+		<p class="Score">Score : 0 </p>
+
+
+		<div class="newGame">
+			<a class="new" href="#">Nouvelle Partie</a>
+		</div>
+
+		<div class="gameOver">
+			<h2>Game Over</h2>
+			<p class="ScoreEND">Score : 0 <p>
+			<a class="new2" href="#">Nouvelle Partie</a>
+		</div>
+
+		<canvas id="myCanvas" resize></canvas>
+	</div>
+
+
+
+
+
+</body>
+</html>
