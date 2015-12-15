@@ -1,3 +1,6 @@
+paper.install(window);
+window.onload = function() {
+
 	$(document).ready(function() {
 
 
@@ -11,24 +14,33 @@
 	    paper.setup(canvas);
 
 
-	    with(paper){/*   Faire les fonction du jeux ici avec paper.  */
+	     /*   Faire les fonction du jeux ici avec paper.  */
 
-				/*Les objets*/
+	      /*Les objets*/
 
-				/* PacMan */
-				var path = new Path.Circle({
-					center: view.center,
-					radius: 30,
-					strokeColor: 'black'
-				});
+				var tool = new Tool();
 
 
+	      /* PacMan */
+	      var path = new Path.Circle({
+	        center: view.center,
+	        radius: 30,
+	        strokeColor: 'red'
+	      });
 
 
 
+	      /*Pommes*/
 
+				var pointx = Math.random()*$( "canvas" ).width();
+				var pointy = Math.random()*$( "canvas" ).height();
 
-				/*Pommes*/
+	      var carre = new Path.Rectangle({
+	        point: [pointx,pointy],
+	        size: [15, 15],
+	        strokeColor: 'black',
+	        fillColor: 'black' // Si option de bonus, faire des couleurs aléatoire
+	      });
 
 
 
@@ -38,71 +50,29 @@
 
 
 
+	      /*enemis*/
 
 
-				/*enemis*/
 
 
 
 
 
 
+	      /* Fonction  */
 
 
-				/* Fonction  */
+	      /* Resize */
+	      function onResize(event) {
+	        // Whenever the window is resized, recenter the path:
+	        path.position = view.center;
+					carre.position = Point.random() * view.size;
+	      }
 
 
-				/* Resize */
-				function onResize(event) {
-					// Whenever the window is resized, recenter the path:
-					path.position = view.center;
-				}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	    }
 
 	  });
 	});
+
+}
