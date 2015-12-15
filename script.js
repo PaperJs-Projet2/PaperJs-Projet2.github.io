@@ -8,7 +8,9 @@ window.onload = function() {
     $(".new").on("click", function() {
       /*   Cacher le bouton nouvelle partie   */
       $(".newGame").hide();
-      console.log("hello");
+
+
+
       /*   Appel au canvas  */
       var canvas = document.getElementById('myCanvas');
       paper.setup(canvas);
@@ -19,8 +21,7 @@ window.onload = function() {
       /*Les objets*/
 
       var tool = new Tool();
-
-      var tool3 = new Tool();
+			var tool2 = new Tool();
 
 
       /* PacMan */
@@ -30,12 +31,21 @@ window.onload = function() {
         strokeColor: 'red'
       });
 
+      /* PacMan */
+      var pac = new Path.Circle({
+        center: view.center,
+        radius: 30,
+        strokeColor: 'red'
+      });
+
+
 
 
       /*Pommes*/
 
       var pointx = Math.random() * $("canvas").width();
       var pointy = Math.random() * $("canvas").height();
+
 
       var carre = new Path.Rectangle({
         point: [pointx, pointy],
@@ -51,14 +61,15 @@ window.onload = function() {
 
 
 
-
       /*enemis*/
       var pointx = Math.random() * $("canvas").width();
       var pointy = Math.random() * $("canvas").height();
 
+
       var triangle = new Path.RegularPolygon(new Point(10, pointy), 3, 15)
       triangle.fillColor = 'red';
       triangle.rotate(90);
+
 
       triangle.onFrame = function(event) {
 
@@ -72,16 +83,26 @@ window.onload = function() {
 
 
 
+      tool.onMouseMove = function(event) {
+
+        var destination = event.point; //detecter la position de la mouse
+
+				var pointRecX = pac.position.x;
+				var pointRecY = pac.position.y;
 
 
-      /* Fonction  */
+				pac.position.x = destination.x;
+				pac.position.y = destination.y;
+
+      }
+
 
 
       /* Resize */
-      function onResize(event) {
+      tool2.onResize = function(event) {
         // Whenever the window is resized, recenter the path:
-        path.position = view.center;
-        carre.position = Point.random() * view.size;
+        pac.position = view.center;
+
       }
 
 
