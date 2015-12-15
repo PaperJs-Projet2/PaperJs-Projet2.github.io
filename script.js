@@ -16,6 +16,8 @@ window.onload = function() {
       paper.setup(canvas);
 
 
+
+
       /*   Faire les fonction du jeux ici avec paper.  */
 
       /*Les objets*/
@@ -24,12 +26,21 @@ window.onload = function() {
 			var tool2 = new Tool();
 
 
+
+
+
       /* PacMan */
       var pac = new Path.Circle({
         center: view.center,
         radius: 30,
         strokeColor: 'red'
       });
+
+
+
+
+
+
 
 
 
@@ -76,9 +87,11 @@ window.onload = function() {
       }
 
 
+      /* Fonction  */
 
 
 
+			/* Le pac man suit la souris quand elle bouge */
 
       tool.onMouseMove = function(event) {
 
@@ -93,8 +106,22 @@ window.onload = function() {
 				pac.position.x = newX;
 			 	pac.position.y = newY;
 
-
       }
+
+			/* le carré disparait après 10 second */
+
+
+			carre.onFrame = function(event) {
+
+				if(event.count % 200 === 0 ){
+
+					var pointx = Math.random() * $("canvas").width();
+		      var pointy = Math.random() * $("canvas").height();
+					carre.position.x = Math.round(pointx);
+					carre.position.y = Math.round(pointy);
+					console.log(carre.point.x);
+				}
+			}
 
 
 
