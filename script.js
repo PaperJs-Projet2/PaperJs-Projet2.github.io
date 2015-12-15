@@ -10,6 +10,7 @@ window.onload = function() {
       $(".newGame").hide();
 
 
+
       /*   Appel au canvas  */
       var canvas = document.getElementById('myCanvas');
       paper.setup(canvas);
@@ -42,10 +43,13 @@ window.onload = function() {
 
 
 
+
+
       /*Pommes*/
 
       var pointx = Math.random() * $("canvas").width();
       var pointy = Math.random() * $("canvas").height();
+
 
       var carre = new Path.Rectangle({
         point: [pointx, pointy],
@@ -60,13 +64,23 @@ window.onload = function() {
 
 
 
+
       /*enemis*/
+      var pointx = Math.random() * $("canvas").width();
+      var pointy = Math.random() * $("canvas").height();
 
 
+      var triangle = new Path.RegularPolygon(new Point(10, pointy), 3, 15)
+      triangle.fillColor = 'red';
+      triangle.rotate(90);
 
 
+      triangle.onFrame = function(event) {
+
+        this.position.x += 6;
 
 
+      }
 
 
       /* Fonction  */
@@ -74,7 +88,6 @@ window.onload = function() {
 
 
 			/* Le pac man suit la souris quand elle bouge */
-			console.log(pac.position.y);
 
       tool.onMouseMove = function(event) {
 
@@ -88,11 +101,23 @@ window.onload = function() {
 
 				pac.position.x = newX;
 			 	pac.position.y = newY;
+
       }
 
 			/* le carré disparait après 10 second */
 
 
+			carre.onFrame = function(event) {
+
+				if(event.count % 200 === 0 ){
+
+					var pointx = Math.random() * $("canvas").width();
+		      var pointy = Math.random() * $("canvas").height();
+					carre.position.x = Math.round(pointx);
+					carre.position.y = Math.round(pointy);
+					console.log(carre.point.x);
+				}
+			}
 
 
 
@@ -100,6 +125,7 @@ window.onload = function() {
       tool2.onResize = function(event) {
         // Whenever the window is resized, recenter the path:
         pac.position = view.center;
+
       }
 
 
