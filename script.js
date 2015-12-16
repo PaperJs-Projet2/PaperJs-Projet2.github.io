@@ -66,6 +66,7 @@ window.onload = function() {
 			triangle.rotate(90);
 			*/
 
+	
 
 			enemiPac.onFrame = function(event) {
 
@@ -95,8 +96,7 @@ window.onload = function() {
         var newY = pointRecY+((destination.y-pointRecY)/45);
 
         pac.position.x = newX;
-        pac.position.y = newY;
-
+        pac.position.y = newY;   		
 
       }
 
@@ -111,9 +111,14 @@ window.onload = function() {
 		      var pointy = Math.random() * $("canvas").height();
 					carre.position.x = Math.round(pointx);
 					carre.position.y = Math.round(pointy);
-					console.log(carre.point.x);
+					//console.log(carre.point.x);
+			
 				}
 			}
+
+
+
+
 
 
 
