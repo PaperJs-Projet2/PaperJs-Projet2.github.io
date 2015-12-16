@@ -21,7 +21,7 @@ window.onload = function() {
       /*Les objets*/
 
 
-			var score = 0;
+      var score = 0;
       var tool = new Tool();
       var tool2 = new Tool();
 
@@ -42,8 +42,10 @@ window.onload = function() {
       var pointx = Math.random() * $("canvas").width();
       var pointy = Math.random() * $("canvas").height();
 
+      var posCurate = isBorder(pointx, pointy);
+
       var carre = new Path.Rectangle({
-        point: [pointx, pointy],
+        point: [posCurate[0], posCurate[1]],
         size: [15, 15],
         strokeColor: 'black',
         fillColor: 'black' // Si option de bonus, faire des couleurs aléatoire
@@ -102,20 +104,22 @@ window.onload = function() {
 
 
 
-				/* Gestion COllision carre et pac man */
+        /* Gestion Collision carre et pac man */
 
-				if (pac.bounds.intersects(carre.bounds)) {
+        if (pac.bounds.intersects(carre.bounds)) {
 
-					score += 10;
-					var pointx = Math.random() * $("canvas").width();
-					var pointy = Math.random() * $("canvas").height();
-					carre.position.x = Math.round(pointx);
-					carre.position.y = Math.round(pointy);
+          score += 10;
+          var pointx = Math.random() * $("canvas").width();
+          var pointy = Math.random() * $("canvas").height();
 
+          var posCurate = isBorder(pointx, pointy);
 
-          $(".score").html("Score : "+score);
+          carre.position.x = Math.round(posCurate[0]);
+          carre.position.y = Math.round(posCurate[1]);
 
-				}
+          $(".score").html("Score : " + score);
+
+        }
 
       }
 
@@ -128,38 +132,43 @@ window.onload = function() {
 
           var pointx = Math.random() * $("canvas").width();
           var pointy = Math.random() * $("canvas").height();
-          carre.position.x = Math.round(pointx);
-          carre.position.y = Math.round(pointy);
+
+          var posCurate = isBorder(pointx, pointy);
+
+          carre.position.x = Math.round(posCurate[0]);
+          carre.position.y = Math.round(posCurate[1]);
         }
 
 
       }
-
-
-
-      /* Collision Carre PacMan*/
-
-      function collisionCarre() {
-        if (pac.position.x + 30 > carre.position.x) {
-
-          console.log("hello");
-          return true;
-        }
-      }
-
-
 
 
       /* Resize */
       tool2.onResize = function(event) {
-
-        // Whenever the window is resized, recenter the path:
         pac.position = view.center;
 
       }
 
 
 
+
+
+      /* Function qui verifie si le carrer et trop prés du bord */
+      function isBorder(pointx, pointy) {
+        var decal = 40;
+        if (pointx < decal) {
+          pointx += decal;
+        } else if (pointx > $("canvas").width() - decal) {
+          pointx -= decal;
+        }
+        if (pointy < decal) {
+          pointy += decal;
+        } else if (pointy > $("canvas").height() - decal) {
+          pointy -= decal;
+        }
+
+        return [pointx, pointy];
+      }
 
     });
   });
