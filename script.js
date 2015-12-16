@@ -16,39 +16,31 @@ window.onload = function() {
       paper.setup(canvas);
 
 
-
-
       /*   Faire les fonction du jeux ici avec paper.  */
 
       /*Les objets*/
 
+
+			var score = 0;
       var tool = new Tool();
       var tool2 = new Tool();
 
 
-
-
-
       /* PacMan */
-      var pac = new Path.Circle({
-        center: view.center,
-        radius: 30,
-        strokeColor: 'red'
-      });
 
+      //Image //
+      var pac = new Raster('pacman');
+      var loaded = false;
 
+      pac.on('load', function() {
+        loaded = true;
 
-
-
-
-
-
+      })
 
       /*Pommes*/
 
       var pointx = Math.random() * $("canvas").width();
       var pointy = Math.random() * $("canvas").height();
-
 
       var carre = new Path.Rectangle({
         point: [pointx, pointy],
@@ -59,24 +51,30 @@ window.onload = function() {
 
 
 
-
-
-
-
-
       /*enemis*/
+      //>
+      var enemiPac = new Raster('enemiPac');
+      var loaded = false;
+
+      enemiPac.on('load', function() {
+          loaded = true;
+        })
+        //>
       var pointx = Math.random() * $("canvas").width();
       var pointy = Math.random() * $("canvas").height();
-
-
-      var triangle = new Path.RegularPolygon(new Point(10, pointy), 3, 15)
+      /*var triangle = new Path.RegularPolygon(new Point(10, pointy), 3, 15)
       triangle.fillColor = 'red';
       triangle.rotate(90);
+      */
 
 
-      triangle.onFrame = function(event) {
+      enemiPac.onFrame = function(event) {
 
         this.position.x += 6;
+        if (this.position.x > $("canvas").width()) {
+          this.position.x = 0;
+          enemiPac.position.y = Math.random() * $("canvas").height();
+        }
 
 
       }
@@ -88,6 +86,7 @@ window.onload = function() {
 
       /* Le pac man suit la souris quand elle bouge */
 
+
       tool.onMouseMove = function(event) {
 
         var destination = event.point; //detecter la position de la mouse
@@ -95,11 +94,28 @@ window.onload = function() {
         var pointRecX = pac.position.x;
         var pointRecY = pac.position.y;
 
-        var newX = pointRecX + ((destination.x - pointRecX) / 80);
-        var newY = pointRecY + ((destination.y - pointRecY) / 80);
+        var newX = pointRecX + ((destination.x - pointRecX) / 45);
+        var newY = pointRecY + ((destination.y - pointRecY) / 45);
 
         pac.position.x = newX;
         pac.position.y = newY;
+
+
+
+				/* Gestion COllision carre et pac man */
+
+				if (pac.bounds.intersects(carre.bounds)) {
+
+					score += 10;
+					var pointx = Math.random() * $("canvas").width();
+					var pointy = Math.random() * $("canvas").height();
+					carre.position.x = Math.round(pointx);
+					carre.position.y = Math.round(pointy);
+
+
+          $(".score").html("Score : "+score);
+
+				}
 
       }
 
@@ -116,10 +132,6 @@ window.onload = function() {
           carre.position.y = Math.round(pointy);
         }
 
-				if(collisionCarre() === true){
-					console.log("hello2");
-
-				}
 
       }
 
@@ -127,20 +139,20 @@ window.onload = function() {
 
       /* Collision Carre PacMan*/
 
-			function collisionCarre(){
-      	if (pac.position.x + 30 > carre.position.x) {
+      function collisionCarre() {
+        if (pac.position.x + 30 > carre.position.x) {
 
-        	console.log("hello");
-					return true;
-      	}
-			}
-
+          console.log("hello");
+          return true;
+        }
+      }
 
 
 
 
       /* Resize */
       tool2.onResize = function(event) {
+
         // Whenever the window is resized, recenter the path:
         pac.position = view.center;
 
