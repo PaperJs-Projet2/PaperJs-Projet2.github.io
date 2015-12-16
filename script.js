@@ -23,7 +23,7 @@ window.onload = function() {
       /*Les objets*/
 
       var tool = new Tool();
-			var tool2 = new Tool();
+      var tool2 = new Tool();
 
 
 
@@ -35,7 +35,6 @@ window.onload = function() {
         radius: 30,
         strokeColor: 'red'
       });
-
 
 
 
@@ -87,37 +86,56 @@ window.onload = function() {
 
 
 
-			/* Le pac man suit la souris quand elle bouge */
+      /* Le pac man suit la souris quand elle bouge */
 
       tool.onMouseMove = function(event) {
 
         var destination = event.point; //detecter la position de la mouse
 
-				var pointRecX = pac.position.x;
-				var pointRecY = pac.position.y;
+        var pointRecX = pac.position.x;
+        var pointRecY = pac.position.y;
 
-				var newX = pointRecX+((destination.x-pointRecX)/100);
-				var newY = pointRecY+((destination.y-pointRecY)/100);
+        var newX = pointRecX + ((destination.x - pointRecX) / 80);
+        var newY = pointRecY + ((destination.y - pointRecY) / 80);
 
-				pac.position.x = newX;
-			 	pac.position.y = newY;
+        pac.position.x = newX;
+        pac.position.y = newY;
 
       }
 
-			/* le carré disparait après 10 second */
+      /* le carré disparait après 10 second */
 
 
-			carre.onFrame = function(event) {
+      carre.onFrame = function(event) {
 
-				if(event.count % 200 === 0 ){
+        if (event.count % 200 === 0) {
 
-					var pointx = Math.random() * $("canvas").width();
-		      var pointy = Math.random() * $("canvas").height();
-					carre.position.x = Math.round(pointx);
-					carre.position.y = Math.round(pointy);
-					console.log(carre.point.x);
+          var pointx = Math.random() * $("canvas").width();
+          var pointy = Math.random() * $("canvas").height();
+          carre.position.x = Math.round(pointx);
+          carre.position.y = Math.round(pointy);
+        }
+
+				if(collisionCarre() === true){
+					console.log("hello2");
+
 				}
+
+      }
+
+
+
+      /* Collision Carre PacMan*/
+
+			function collisionCarre(){
+      	if (pac.position.x + 30 > carre.position.x) {
+
+        	console.log("hello");
+					return true;
+      	}
 			}
+
+
 
 
 
