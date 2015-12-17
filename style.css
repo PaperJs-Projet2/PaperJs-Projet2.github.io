@@ -53,43 +53,43 @@ canvas{
 	border:5px solid darkblue;
 	z-index:0;
 }
+
+
 .newGame{
-    position:absolute;
-    top:30%;
-    left:20%;
-    width:65%;
-    height:65%;
-    background-color:#269;
-    border:5px solid darkblue;
-    z-index: 1;
+	position:absolute;
+	top:30%;
+	left:20%;
+	width:65%;
+	height:65%;
+	background-color:#269;
+	border:5px solid darkblue;
+	z-index: 1;
 
 }
 .newGame a{
-    text-decoration:none;
-    color:orange;
-    text-shadow: 1px 1px white;
-    font-size:20px;
-    padding-left: 20px;
+	text-decoration:none;
+	color:orange;
+	text-shadow: 1px 1px white;
+	font-size:20px;
+	padding-left: 20px;
+
 /*font-family: 'Rock Salt', cursive;*/
     margin:0;
 
 }
 
 .newGame a:hover {
-    text-decoration:underline;
+	text-decoration:underline;
 }
 
 .newGame h2{
-    color:orange;
-    text-shadow: 1px 1px white;
-    font-size:40px;
-    padding-left: 20px;
-    font-family: 'Rock Salt', cursive;
-    margin-top:10%;
-
+	color:orange;
+	text-shadow: 1px 1px white;
+	font-size:40px;
+	padding-left: 20px;
+	font-family: 'Rock Salt', cursive;
+	margin-top:10%;
 }
-
-
 
 
 .gameOver{
@@ -110,7 +110,7 @@ canvas{
 	text-shadow: 1px 1px white;
 	font-size:30px;
 	font-family: 'Rock Salt', cursive;
-	margin:0;
+	margin-top:10%;
 
 }
 
@@ -131,4 +131,3 @@ canvas{
 .gameOver p{
 	font-size:20px;
 }
-
