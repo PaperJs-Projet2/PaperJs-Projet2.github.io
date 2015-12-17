@@ -1,208 +1,215 @@
 paper.install(window);
 window.onload = function() {
 
-  $(document).ready(function() {
-    //e.preventDefault();
+    $(document).ready(function() {
+        //e.preventDefault();
 
-    /*   Click sur nouvelle partie   */
-    $(".pacna").on("click", function() {
-      jeux("pacna");
-    });
-    $(".pacrine").on("click", function() {
-      jeux("pacrine");
-    });
-    $(".pacnik").on("click", function() {
-      jeux("pacnik");
-    });
+        /*   Click sur nouvelle partie   */
+        $(".pacna").on("click", function() {
+          jeux("pacna");
+        });
+        $(".pacrine").on("click", function() {
+          jeux("pacrine");
+        });
+        $(".pacnik").on("click", function() {
+          jeux("pacnik");
+        });
 
-    /*   Cacher le bouton nouvelle partie   */
+        /*   Cacher le bouton nouvelle partie   */
 
-    function jeux(joueur) {
-      $(".newGame").hide();
+        function jeux(joueur) {
+          $(".newGame").hide();
 
+            /*   Appel au canvas  */
+            var canvas = document.getElementById('myCanvas');
+            paper.setup(canvas);
 
 
-      /*   Appel au canvas  */
-      var canvas = document.getElementById('myCanvas');
-      paper.setup(canvas);
+            /*   Faire les fonctions du jeux ici avec paper.  */
 
+            /*Les objets*/
+            var score = 0;
+            var tool = new Tool();
+            var tool2 = new Tool();
 
-      /*   Faire les fonction du jeux ici avec paper.  */
+            /* PacMan */
 
-      /*Les objets*/
+            //Image //
 
 
-      var score = 0;
-      var tool = new Tool();
-      var tool2 = new Tool();
 
 
-      /* PacMan */
 
-      //Image //
-      var pac = new Raster('jous1');
-      var loaded = false;
+            /* A MODIFIER PAR YANNIC*/
+            var pac = new Raster('jous1');
+            var loaded = false;
 
-      pac.on('load', function() {
-        loaded = true;
 
-      })
+            pac.onFrame = function(event) {
+              if (event.count % 30 === 0) {
+                pac.source = "jous2.png";
 
-      pac.onFrame = function(event) {
-        if (event.count % 30 === 0) {
-          pac.source = "jous2.png";
+              } else if (event.count % 20 === 0) {
+                pac.source = "jous1.png";
+              }
+            }
 
-        } else if (event.count % 20 === 0) {
-          pac.source = "jous1.png";
 
 
-        }
 
 
-      }
 
-      /*Pommes*/
 
-      var pointx = Math.random() * $("canvas").width();
-      var pointy = Math.random() * $("canvas").height();
 
-      var posCurate = isBorder(pointx, pointy);
 
-      var carre = new Path.Rectangle({
-        point: [posCurate[0], posCurate[1]],
-        size: [15, 15],
-        strokeColor: 'black',
-        fillColor: 'black' // Si option de bonus, faire des couleurs aléatoire
-      });
 
 
 
-      /*enemis*/
 
 
 
 
-      var enemiPac = new Raster('enemiPac');
-      var loaded = false;
 
-      enemiPac.on('load', function() {
-        loaded = true;
-      })
 
 
-      enemiPac.position.y = Math.random() * $("canvas").height();
+            /*Pommes*/
 
+            var pointx = Math.random() * $("canvas").width();
+            var pointy = Math.random() * $("canvas").height();
 
+            var posCurate = isBorder(pointx, pointy);
 
-      enemiPac.onFrame = function(event) {
+            var carre = new Path.Rectangle({
+              point: [posCurate[0], posCurate[1]],
+              size: [15, 15],
+              strokeColor: 'black',
+              fillColor: 'black' // Si option de bonus, faire des couleurs aléatoire
+            });
 
-        this.position.x += 6;
-        if (this.position.x > $("canvas").width()) {
-          this.position.x = 0;
-          enemiPac.position.y = Math.random() * $("canvas").height();
-        }
+            /*enemis*/
+            var enemiPac = new Raster('enemiPac');
+            var loaded = false;
 
+            enemiPac.on('load', function() {
+              loaded = true;
+            })
 
-      }
 
+            enemiPac.position.y = Math.random() * $("canvas").height();
 
-      /* Fonction  */
+            enemiPac.onFrame = function(event) {
 
+              this.position.x += 6;
+              if (this.position.x > $("canvas").width()) {
+                this.position.x = 0;
+                enemiPac.position.y = Math.random() * $("canvas").height();
+              }
+            }
 
 
-      /* Le pac man suit la souris quand elle bouge */
+            /* Fonction  */
+            /* Le pac man suit la souris quand elle bouge */
 
 
-      tool.onMouseMove = function(event) {
+            tool.onMouseMove = function(event) {
 
-        var destination = event.point; //detecter la position de la mouse
+              var destination = event.point; //detecter la position de la mouse
 
-        var pointRecX = pac.position.x;
-        var pointRecY = pac.position.y;
+              var pointRecX = pac.position.x;
+              var pointRecY = pac.position.y;
 
-        var newX = pointRecX + ((destination.x - pointRecX) / 45);
-        var newY = pointRecY + ((destination.y - pointRecY) / 45);
+              var newX = pointRecX + ((destination.x - pointRecX) / 45);
+              var newY = pointRecY + ((destination.y - pointRecY) / 45);
 
-        pac.position.x = newX;
-        pac.position.y = newY;
+              pac.position.x = newX;
+              pac.position.y = newY;
 
+              /* Gestion Collision carre et pac man */
 
+              if (pac.bounds.intersects(carre.bounds)) {
 
-        /* Gestion Collision carre et pac man */
+                score += 10;
+                var pointx = Math.random() * $("canvas").width();
+                var pointy = Math.random() * $("canvas").height();
 
-        if (pac.bounds.intersects(carre.bounds)) {
+                var posCurate = isBorder(pointx, pointy);
 
-          score += 10;
-          var pointx = Math.random() * $("canvas").width();
-          var pointy = Math.random() * $("canvas").height();
+                carre.position.x = Math.round(posCurate[0]);
+                carre.position.y = Math.round(posCurate[1]);
 
-          var posCurate = isBorder(pointx, pointy);
+                $(".score").html("Score : " + score);
 
-          carre.position.x = Math.round(posCurate[0]);
-          carre.position.y = Math.round(posCurate[1]);
+              }
 
-          $(".score").html("Score : " + score);
 
-        }
+              if (enemiPac.bounds.intersects(pac.bounds)) {
+                console.log()
+                $(".gameOver").show();
+                if (score > 100) {
+                  $(".ScoreEND").html("BRAVO vous avez marquez" + score + " points !!");
+                } else {
+                  $(".ScoreEND").html(+score + " points seulement ?! C'est pas terrible ! ");
+                }
 
+                $(".new2").on("click", function() {
+                  location.reload();
+                });
+              }
 
-        if (enemiPac.bounds.intersects(pac.bounds)) {
-          $(".gameOver").show();
-          if (score > 100) {
-            $(".ScoreEND").html("BRAVO vous avez marquez"+score+" points !!" );
-          } else {
-            $(".ScoreEND").html(+score+" points seulement ?! C'est pas terrible ! " );
-          } 
+            }
 
-          $(".new2").on("click",function(){location.reload();} );
-        }
+            /* le carré disparait après 10 second */
 
-      }
+            carre.onFrame = function(event) {
+                if (event.count % 200 === 0) {
 
-      /* le carré disparait après 10 second */
+                  var pointx = Math.random() * $("canvas").width();
+                  var pointy = Math.random() * $("canvas").height();
 
+                  var posCurate = isBorder(pointx, pointy);
 
-      carre.onFrame = function(event) {
+                  carre.position.x = Math.round(posCurate[0]);
+                  carre.position.y = Math.round(posCurate[1]);
+                }
+              }
+              /* Collision Carre PacMan*/
 
-        if (event.count % 200 === 0) {
+            function collisionCarre() {
+              if (pac.position.x + 30 > carre.position.x) {
 
-          var pointx = Math.random() * $("canvas").width();
-          var pointy = Math.random() * $("canvas").height();
+              }
+              console.log("hello");
+              return true;
+            }
 
-          var posCurate = isBorder(pointx, pointy);
 
-          carre.position.x = Math.round(posCurate[0]);
-          carre.position.y = Math.round(posCurate[1]);
-        }
+            // Whenever the window is resized, recenter the path:
+            /* Resize */
+            tool2.onResize = function(event) {
+              pac.position = view.center;
 
+            }
 
-      }
 
 
-      /* Resize */
-      tool2.onResize = function(event) {
-        pac.position = view.center;
 
-      }
+            /* Function qui verifie si le carrer et trop prés du bord */
+            function isBorder(pointx, pointy) {
+              var decal = 40;
+              if (pointx < decal) {
+                pointx += decal;
+              } else if (pointx > $("canvas").width() - decal) {
+                pointx -= decal;
+              }
+              if (pointy < decal) {
+                pointy += decal;
+              } else if (pointy > $("canvas").height() - decal) {
+                pointy -= decal;
+              }
 
+              return [pointx, pointy];
+            }
+          }
 
-
-      /* Function qui verifie si le carrer et trop prés du bord */
-      function isBorder(pointx, pointy) {
-        var decal = 40;
-        if (pointx < decal) {
-          pointx += decal;
-        } else if (pointx > $("canvas").width() - decal) {
-          pointx -= decal;
-        }
-        if (pointy < decal) {
-          pointy += decal;
-        } else if (pointy > $("canvas").height() - decal) {
-          pointy -= decal;
-        }
-
-        return [pointx, pointy];
-      }
+        });
     }
-  });
-}
