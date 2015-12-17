@@ -3,12 +3,12 @@
 html, body{
 	width:100%;
 	height:100%;
-	margin:0;	
+	margin:0;
 }
 
 body{
 	color:white;
-	
+
 	background-color:#269;
 	background-image: linear-gradient(darkblue 2px, transparent 2px),
 	linear-gradient(90deg, darkblue 2px, transparent 2px),
@@ -16,14 +16,14 @@ body{
 	linear-gradient(90deg, rgba(255,255,255,.3) 1px, transparent 1px);
 	background-size:100px 100px, 100px 100px, 20px 20px, 20px 20px;
 	background-position:-2px -2px, -2px -2px, -1px -1px, -1px -1px
-	
+
 }
 
 header{
 	text-align:center;
 	margin-left:auto;
 	margin-right: auto;
-	
+
 }
 
 h1{
@@ -39,47 +39,70 @@ h1{
 	text-align:center;
 	margin-left:auto;
 	margin-right: auto;
-	
-	
+
+
 }
 
 canvas{
+	position:absolute;
+	top:30%;
+	left:20%;
 	background-color:#269;
 	width:65%;
 	height:65%;
 	border:5px solid darkblue;
+	z-index:0;
 }
 
 
-.newGame{
+#newGame{
 	position:absolute;
-	top:50%;
-	left:43%;
-	
-	
+	top:30%;
+	left:20%;
+	width:65%;
+	height:65%;
+	background-color:#269;
+	border:5px solid darkblue;
+	z-index: 1;
+
 }
-.newGame a{
+#newGame a{
 	text-decoration:none;
 	color:orange;
 	text-shadow: 1px 1px white;
-	font-size:30px;
-	font-family: 'Rock Salt', cursive;
+	font-size:20px;
+	padding-left: 20px;
+/*font-family: 'Rock Salt', cursive;*/
 	margin:0;
-	
+
 }
 
-.newGame a:hover {
+#newGame a:hover {
 	text-decoration:underline;
+}
+
+#newGame h2{
+	color:orange;
+	text-shadow: 1px 1px white;
+	font-size:40px;
+	padding-left: 20px;
+	font-family: 'Rock Salt', cursive;
+	margin-top:10%;
+
 }
 
 
 .gameOver{
 	position:absolute;
-	top:45%;
-	left:43%;
+	top:30%;
+	left:20%;
+	width:65%;
+	height:65%;
+	background-color:#269;
+	border:5px solid darkblue;
+	z-index: 15;
 	display:none;
-	visibility:hidden;
-	
+
 }
 .gameOver h2{
 	text-decoration:none;
@@ -88,7 +111,7 @@ canvas{
 	font-size:30px;
 	font-family: 'Rock Salt', cursive;
 	margin:0;
-	
+
 }
 
 .gameOver a{
@@ -98,7 +121,7 @@ canvas{
 	font-size:20px;
 	font-family: 'Rock Salt', cursive;
 	margin:0;
-	
+
 }
 
 .gameOver a:hover {
@@ -108,5 +131,3 @@ canvas{
 .gameOver p{
 	font-size:20px;
 }
-
-
