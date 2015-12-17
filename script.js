@@ -2,11 +2,22 @@ paper.install(window);
 window.onload = function() {
 
   $(document).ready(function() {
-
+    //e.preventDefault();
 
     /*   Click sur nouvelle partie   */
-    $(".new").on("click", function() {
-      /*   Cacher le bouton nouvelle partie   */
+    $(".pacna").on("click", function() {
+      jeux("pacna");
+    });
+    $(".pacrine").on("click", function() {
+      jeux("pacrine");
+    });
+    $(".pacnik").on("click", function() {
+      jeux("pacnik");
+    });
+
+    /*   Cacher le bouton nouvelle partie   */
+
+    function jeux(joueur) {
       $(".newGame").hide();
 
 
@@ -37,18 +48,18 @@ window.onload = function() {
 
       })
 
-	   pac.onFrame = function(event) {
-		   if (event.count % 30 === 0) {
-			    pac.source="jous2.png";
+      pac.onFrame = function(event) {
+        if (event.count % 30 === 0) {
+          pac.source = "jous2.png";
 
-		   }else if(event.count % 20 === 0) {
-			  pac.source="jous1.png";
-
-
-		   }
+        } else if (event.count % 20 === 0) {
+          pac.source = "jous1.png";
 
 
-	   }
+        }
+
+
+      }
 
       /*Pommes*/
 
@@ -75,11 +86,11 @@ window.onload = function() {
       var loaded = false;
 
       enemiPac.on('load', function() {
-          loaded = true;
-        })
+        loaded = true;
+      })
 
 
-       enemiPac.position.y = Math.random() * $("canvas").height();
+      enemiPac.position.y = Math.random() * $("canvas").height();
 
 
 
@@ -134,6 +145,18 @@ window.onload = function() {
 
         }
 
+
+        if (enemiPac.bounds.intersects(pac.bounds)) {
+          $(".gameOver").show();
+          if (score > 100) {
+            $(".ScoreEND").html("BRAVO vous avez marquez"+score+" points !!" );
+          } else {
+            $(".ScoreEND").html(+score+" points seulement ?! C'est pas terrible ! " );
+          } 
+
+          $(".new2").on("click",function(){location.reload();} );
+        }
+
       }
 
       /* le carré disparait après 10 second */
@@ -164,8 +187,6 @@ window.onload = function() {
 
 
 
-
-
       /* Function qui verifie si le carrer et trop prés du bord */
       function isBorder(pointx, pointy) {
         var decal = 40;
@@ -182,8 +203,6 @@ window.onload = function() {
 
         return [pointx, pointy];
       }
-
-    });
+    }
   });
-
 }
