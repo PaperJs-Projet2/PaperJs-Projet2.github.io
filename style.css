@@ -53,21 +53,24 @@ canvas{
 
 .newGame{
 	position:absolute;
-	top:50%;
-	left:43%;
-	
+	top:33%;
+	left:33%;
 	
 }
-.newGame a{
+.newGame a,h3{
 	text-decoration:none;
 	color:orange;
 	text-shadow: 1px 1px white;
 	font-size:30px;
 	font-family: 'Rock Salt', cursive;
 	margin:0;
-	
 }
 
+.newGame h3
+{
+	color:#DEB100;
+	font-size: 40px;
+}
 .newGame a:hover {
 	text-decoration:underline;
 }
@@ -109,4 +112,9 @@ canvas{
 	font-size:20px;
 }
 
-
+#PacNa
+{
+	background-image: url('selectPacman.png');
+	width: 20px;
+	height: 20px;
+}

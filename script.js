@@ -1,41 +1,76 @@
 paper.install(window);
 window.onload = function() {
 
-  $(document).ready(function() {
-
-
-    /*   Click sur nouvelle partie   */
-    $(".new").on("click", function() {
-      /*   Cacher le bouton nouvelle partie   */
-      $(".newGame").hide();
+	$(document).ready(function(e) {
+		//e.preventDefault();
 
 
 
-      /*   Appel au canvas  */
-      var canvas = document.getElementById('myCanvas');
-      paper.setup(canvas);
+
+		/*   Cacher le bouton nouvelle partie   */
+
+		function jeux(joueur) {
+			console.log('10');
+			/*   Click sur nouvelle partie   */
+
+			$(".PacNa").on("click", jeux('PacNa'));
+			console.log('pacna');
 
 
-      /*   Faire les fonction du jeux ici avec paper.  */
+			$(".PacRine").on("click", jeux('PacRine'));
+			console.log('pacrine');
 
-      /*Les objets*/
+			$(".PacNic").on("click",jeux('PacNic'));
+			console.log('pacnic');
 
+
+
+			$(".newGame").hide();
+			/*   Appel au canvas  */
+			var canvas = document.getElementById('myCanvas');
+			paper.setup(canvas);
+
+
+			/*   Faire les fonctions du jeux ici avec paper.  */
+
+			/*Les objets*/
 
 			var score = 0;
-      var tool = new Tool();
-      var tool2 = new Tool();
+			var tool = new Tool();
+			var tool2 = new Tool();
 
 
-      /* PacMan */
+			/* PacMan */
 
       //Image //
-      var pac = new Raster('pacman');
-      var loaded = false;
 
-      pac.on('load', function() {
-        loaded = true;
+      if (joueur === 'PacNa'){
 
-      })
+      	var pac = new Raster('PacNa');
+      	var loaded = false;
+      	
+      	pac.on('load', function() {
+      		loaded = true;
+      	})
+      }
+      else if (joueur === 'PacRine') {
+
+      	var pac = new Raster('PacRine');
+      	var loaded = false;
+      	
+      	pac.on('load', function() {
+      		loaded = true;
+      	})
+
+      } else {
+      	var pac = new Raster('PacNic');
+      	var loaded = false;
+      	
+      	pac.on('load', function() {
+      		loaded = true;
+
+      	})
+      }
 
       /*Pommes*/
 
@@ -43,11 +78,11 @@ window.onload = function() {
       var pointy = Math.random() * $("canvas").height();
 
       var carre = new Path.Rectangle({
-        point: [pointx, pointy],
-        size: [15, 15],
-        strokeColor: 'black',
+      	point: [pointx, pointy],
+      	size: [15, 15],
+      	strokeColor: 'black',
         fillColor: 'black' // Si option de bonus, faire des couleurs aléatoire
-      });
+    });
 
 
 
@@ -57,32 +92,26 @@ window.onload = function() {
       var loaded = false;
 
       enemiPac.on('load', function() {
-          loaded = true;
-        })
-        //>
+      	loaded = true;
+      });
+      //>
       var pointx = Math.random() * $("canvas").width();
       var pointy = Math.random() * $("canvas").height();
       /*var triangle = new Path.RegularPolygon(new Point(10, pointy), 3, 15)
       triangle.fillColor = 'red';
       triangle.rotate(90);
       */
-
-	
-
       enemiPac.onFrame = function(event) {
 
-        this.position.x += 6;
-        if (this.position.x > $("canvas").width()) {
-          this.position.x = 0;
-          enemiPac.position.y = Math.random() * $("canvas").height();
+      	this.position.x += 6;
+      	if (this.position.x > $("canvas").width()) {
+      		this.position.x = 0;
+      		enemiPac.position.y = Math.random() * $("canvas").height();
+      	}
       }
-  }
 
 
       /* Fonction  */
-
-
-
       /* Le pac man suit la souris quand elle bouge */
 
 
@@ -97,61 +126,49 @@ window.onload = function() {
         var newY = pointRecY + ((destination.y - pointRecY) / 45);
 
         pac.position.x = newX;
-        pac.position.y = newY;   		
+        pac.position.y = newY;
 
 
-				/* Gestion COllision carre et pac man */
+        /* Gestion COllision carre et pac man */
 
-				if (pac.bounds.intersects(carre.bounds)) {
+        if (pac.bounds.intersects(carre.bounds)) {
 
-					score += 10;
-					var pointx = Math.random() * $("canvas").width();
-					var pointy = Math.random() * $("canvas").height();
-					carre.position.x = Math.round(pointx);
-					carre.position.y = Math.round(pointy);
-
-
-
-          $(".score").html("Score : "+score);
-				}
-
-      }
-
-      /* le carré disparait après 10 second */
+        	score += 10;
+        	var pointx = Math.random() * $("canvas").width();
+        	var pointy = Math.random() * $("canvas").height();
+        	carre.position.x = Math.round(pointx);
+        	carre.position.y = Math.round(pointy);
 
 
-      carre.onFrame = function(event) {
 
-        if (event.count % 200 === 0) {
-
-          var pointx = Math.random() * $("canvas").width();
-          var pointy = Math.random() * $("canvas").height();
-          carre.position.x = Math.round(pointx);
-          carre.position.y = Math.round(pointy);
+        	$(".score").html("Score : " + score);
         }
 
+    }
 
-      }
+    /* le carré disparait après 10 second */
 
+    carre.onFrame = function(event) {
 
+    	if (event.count % 200 === 0) {
 
-      /* Collision Carre PacMan*/
-
-      function collisionCarre() {
-        if (pac.position.x + 30 > carre.position.x) {
-
-          console.log("hello");
-          return true;
-        }
-      }
-
+    		var pointx = Math.random() * $("canvas").width();
+    		var pointy = Math.random() * $("canvas").height();
+    		carre.position.x = Math.round(pointx);
+    		carre.position.y = Math.round(pointy);
+    	}
 
 
+    }
+    /* Collision Carre PacMan*/
 
+    function collisionCarre() {
+    	if (pac.position.x + 30 > carre.position.x) {
 
-
-
-
+    		console.log("hello");
+    		return true;
+    	}
+    }
 
     /* Resize */
     tool2.onResize = function(event) {
@@ -159,12 +176,9 @@ window.onload = function() {
         // Whenever the window is resized, recenter the path:
         pac.position = view.center;
 
-      }
+    }
 
-
-
-
-    });
-  });
+}
+});
 
 }
