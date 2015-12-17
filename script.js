@@ -29,13 +29,26 @@ window.onload = function() {
       /* PacMan */
 
       //Image //
-      var pac = new Raster('pacman');
+      var pac = new Raster('jous1');
       var loaded = false;
 
       pac.on('load', function() {
         loaded = true;
 
       })
+
+	   pac.onFrame = function(event) {
+		   if (event.count % 30 === 0) {
+			    pac.source="jous2.png";
+
+		   }else if(event.count % 20 === 0) {
+			  pac.source="jous1.png";
+
+
+		   }
+
+
+	   }
 
       /*Pommes*/
 
@@ -54,20 +67,20 @@ window.onload = function() {
 
 
       /*enemis*/
-      //>
+
+
+
+
       var enemiPac = new Raster('enemiPac');
       var loaded = false;
 
       enemiPac.on('load', function() {
           loaded = true;
         })
-        //>
-      var pointx = Math.random() * $("canvas").width();
-      var pointy = Math.random() * $("canvas").height();
-      /*var triangle = new Path.RegularPolygon(new Point(10, pointy), 3, 15)
-      triangle.fillColor = 'red';
-      triangle.rotate(90);
-      */
+
+
+       enemiPac.position.y = Math.random() * $("canvas").height();
+
 
 
       enemiPac.onFrame = function(event) {
