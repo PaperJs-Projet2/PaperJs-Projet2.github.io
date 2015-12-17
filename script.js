@@ -5,17 +5,21 @@ window.onload = function() {
     //e.preventDefault();
 
 
-    $(".pacna").on("click", function() { jeux('pacna'); });
-    $(".pacrine").on("click", function() { jeux('pacrine'); });
-    $(".pacnic").on("click", function() { jeux('pacnic'); });
+    $(".pacna").on("click", function() {
+      jeux('pacna');
+    });
+    $(".pacrine").on("click", function() {
+      jeux('pacrine');
+    });
+    $(".pacnic").on("click", function() {
+      jeux('pacnic');
+    });
 
     /*   Cacher le bouton nouvelle partie   */
-
     function jeux(joueur) {
       console.log(joueur);
+
       /*   Click sur nouvelle partie   */
-
-
       $(".newGame").hide();
       /*   Appel au canvas  */
       var canvas = document.getElementById('myCanvas');
@@ -33,21 +37,56 @@ window.onload = function() {
 
       //Image //
 
-      var pac = new Raster('jous1');
-      var loaded = false;
+      if (joueur === 'pacna') {
+        var pac = new Raster('jous1')
+        var loaded = false;
 
+        pac.on('load', function() {
+          loaded = true;
+        });
 
-      pac.onFrame = function(event) {
-        if (event.count % 30 === 0) {
-          pac.source = "jous2.png";
+        pac.onFrame = function(event) {
+          if (event.count % 30 === 0) {
+            pac.source = "jous2.png";
 
-        } else if (event.count % 20 === 0) {
-          pac.source = "jous1.png";
+          } else if (event.count % 20 === 0) {
+            pac.source = "jous1.png";
+          }
+        }
+      } else if (joueur === 'pacrine') {
+        var pac = new Raster('karine1')
+        var loaded = false;
+        pac.on('load', function() {
+          loaded = true;
+        });
+
+        pac.onFrame = function(event) {
+          if (event.count % 30 === 0) {
+            pac.source = "karine2.png";
+
+          } else if (event.count % 20 === 0) {
+            pac.source = "karine1.png";
+          }
+        }
+      } else {
+        {
+          var pac = new Raster('yannic1')
+          var loaded = false;
+          pac.on('load', function() {
+            loaded = true;
+          });
+
+          pac.onFrame = function(event) {
+            if (event.count % 30 === 0) {
+              pac.source = "yannic2.png";
+
+            } else if (event.count % 20 === 0) {
+              pac.source = "yannic1.png";
+            }
+          }
         }
       }
-
       /*Pommes*/
-
       var pointx = Math.random() * $("canvas").width();
       var pointy = Math.random() * $("canvas").height();
 
@@ -69,6 +108,8 @@ window.onload = function() {
         loaded = true;
       })
 
+      enemiPac.position.y = Math.random() * $("canvas").height();
+      
       enemiPac.onFrame = function(event) {
 
         this.position.x += 6;
@@ -78,6 +119,7 @@ window.onload = function() {
         }
       }
 
+		
 
       /* Fonction  */
       /* Le pac man suit la souris quand elle bouge */
@@ -115,6 +157,18 @@ window.onload = function() {
 
       }
 
+	if (enemiPac.bounds.intersects(pac.bounds)) {
+		console.log('hello');
+         $(".gameOver").show();
+         if (score > 100) {
+           $(".ScoreEND").html("BRAVO vous avez marquez"+score+" points !!" );
+         } else {
+           $(".ScoreEND").html(+score+" points seulement ?! C'est pas terrible ! " );
+         }
+
+         $(".new2").on("click",function(){location.reload();} );
+       }
+
       /* le carré disparait après 10 second */
 
       carre.onFrame = function(event) {
@@ -129,15 +183,7 @@ window.onload = function() {
             carre.position.y = Math.round(posCurate[1]);
           }
         }
-        /* Collision Carre PacMan*/
 
-      function collisionCarre() {
-        if (pac.position.x + 30 > carre.position.x) {
-
-        }
-        console.log("hello");
-        return true;
-      }
 
 
       // Whenever the window is resized, recenter the path:
