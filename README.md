@@ -1,2 +1,5 @@
 # PaperJs-Projet2
-## paperman.github.io
+## PaperJs-Projet2.github.io
+
+
+http://paperjs-projet2.github.io/
