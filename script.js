@@ -110,9 +110,7 @@ window.onload = function() {
       enemiPac.position.y = Math.random() * $("canvas").height();
 
       enemiPac.onFrame = function(event) {
-
-
-        this.position.x += vitesse;
+      this.position.x += vitesse;
         if (this.position.x > $("canvas").width()) {
           this.position.x = 0;
           enemiPac.position.y = Math.random() * $("canvas").height();
@@ -148,7 +146,6 @@ window.onload = function() {
       {
         vitesse += 2;
       }
-
 
 
       /* Le pac man suit la souris quand elle bouge */
