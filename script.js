@@ -116,6 +116,7 @@ window.onload = function() {
                 this.position.x = 0;
                 enemiPac.position.y = Math.random() * $("canvas").height();
               }
+
             }
 
 
@@ -157,7 +158,7 @@ window.onload = function() {
                 console.log()
                 $(".gameOver").show();
                 if (score > 100) {
-                  $(".ScoreEND").html("BRAVO vous avez marquez" + score + " points !!");
+                  $(".ScoreEND").html("BRAVO vous avez marqué" + score + " points !!");
                 } else {
                   $(".ScoreEND").html(+score + " points seulement ?! C'est pas terrible ! ");
                 }
