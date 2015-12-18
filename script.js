@@ -120,6 +120,11 @@ window.onload = function() {
 
       }
 
+      // Difficulte en fonction du score
+      if (score %50 === 0)
+      {
+        vitesse += 2;
+      }
 
       var enemiPac2 = new Raster('enemiPac2');
       var loaded = false;
