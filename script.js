@@ -81,9 +81,9 @@ window.onload = function() {
               pac.source = "yannic1.png";
             }
           }
-      	} 
+      	}
       }
-     
+
             /*Pommes*/
 
             var pointx = Math.random() * $("canvas").width();
@@ -91,12 +91,12 @@ window.onload = function() {
 
             var posCurate = isBorder(pointx, pointy);
 
-            var carre = new Path.Rectangle({
-              point: [posCurate[0], posCurate[1]],
-              size: [15, 15],
-              strokeColor: 'black',
-              fillColor: 'black' // Si option de bonus, faire des couleurs aléatoire
-            });
+            var carre = new Raster('carre');
+
+            carre.position = [posCurate[0],posCurate[1]];
+
+
+
 
             /*enemis*/
             var enemiPac = new Raster('enemiPac');
