@@ -230,7 +230,7 @@ window.onload = function() {
 
       /* Function qui verifie si le carrer et trop prés du bord */
       function isBorder(pointx, pointy) {
-        var decal = 40;
+        var decal = 50;
         if (pointx < decal) {
           pointx += decal;
         } else if (pointx > $("canvas").width() - decal) {
