@@ -30,7 +30,7 @@ window.onload = function() {
             var score = 0;
             var tool = new Tool();
             var tool2 = new Tool();
-
+            var vitesse = 6;
             /* PacMan */
 
             //Image //
@@ -111,7 +111,7 @@ window.onload = function() {
             enemiPac.onFrame = function(event) {
 
 
-              this.position.x += 6;
+              this.position.x += vitesse;
               if (this.position.x > $("canvas").width()) {
                 this.position.x = 0;
                 enemiPac.position.y = Math.random() * $("canvas").height();
@@ -119,7 +119,12 @@ window.onload = function() {
 
             }
 
-
+            /*Difficulté en fonction du score*/
+              if (score % 50 === 0)
+              {
+                vitesse += 2;
+              }
+              
             /* Fonction  */
             /* Le pac man suit la souris quand elle bouge */
 
@@ -150,6 +155,7 @@ window.onload = function() {
                 carre.position.y = Math.round(posCurate[1]);
 
                 $(".score").html("Score : " + score);
+
 
               }
 
