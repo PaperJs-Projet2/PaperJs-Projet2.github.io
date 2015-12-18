@@ -120,12 +120,7 @@ window.onload = function() {
 
       }
 
-      // Difficulte en fonction du score
-      if (score %50 === 0)
-      {
-        vitesse += 2;
-      }
-
+      // Deuxieme enemie
       var enemiPac2 = new Raster('enemiPac2');
       var loaded = false;
 
@@ -148,8 +143,14 @@ window.onload = function() {
 
 
 
+      // Difficulte en fonction du score
+      if (score %50 === 0)
+      {
+        vitesse += 2;
+      }
 
-      /* Fonction  */
+
+
       /* Le pac man suit la souris quand elle bouge */
 
       tool.onMouseMove = function(event) {
@@ -212,24 +213,9 @@ window.onload = function() {
             carre.position.y = Math.round(posCurate[1]);
           }
         }
-        /* Collision Carre PacMan*/
-
-      function collisionCarre() {
-        if (pac.position.x + 30 > carre.position.x) {
-
-        }
-        console.log("hello");
-        return true;
-      }
 
 
-      // Whenever the window is resized, recenter the path:
       /* Resize */
-      tool2.onResize = function(event) {
-        pac.position = view.center;
-
-      }
-
 
 
 
